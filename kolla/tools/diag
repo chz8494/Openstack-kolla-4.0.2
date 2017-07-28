@@ -1,0 +1,22 @@
+#!/bin/bash
+
+echo "##### System Identification #####"
+egrep -w 'PRETTY_NAME|VERSION_ID' /etc/os-release
+
+echo "##### Docker Version #####"
+docker --version
+
+echo "##### Docker Info #####"
+docker info
+
+echo "##### List installed packages, including editables #####"
+pip list
+
+echo "##### Docker Images #####"
+docker images -a --filter "label=kolla_version" --filter "dangling=false" --format "{{.ID}} - {{.Repository}}:{{.Tag}} - {{.CreatedSince}}"
+
+echo "##### All Docker Containers  #####"
+docker ps -a
+
+echo "##### Ip Link Show  #####"
+ip link show
